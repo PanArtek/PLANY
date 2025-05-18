@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ServiceDetail from '../../../components/ServiceDetail.tsx';
+import { getServicePageBySlug } from '../../../cms/api';
+import { defaultLanguage } from '../../../i18n/ui';
+
+export async function getStaticPaths() {
+  // In a real implementation, you would fetch all services from the CMS
+  // For now, we'll hardcode the two services we've created
+  const slugs = ['commercial-fit-out', 'residential-fit-out'];
+  
+  return slugs.map(slug => ({
+    params: { slug },
+    props: { slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const service = await getServicePageBySlug(slug);
+
+// Handle 404 case
+if (!service) {
+  return Astro.redirect(`/${defaultLanguage}/404`);
+}
+
+// Get SEO data for the current language
+const seo = service.seo[defaultLanguage];
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+>
+  <ServiceDetail slug={slug} url={Astro.url} client:load />
+</BaseLayout>

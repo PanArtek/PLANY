@@ -1,0 +1,20 @@
+---
+import { languages } from '../i18n/ui';
+import { getLangFromUrl, getRelativeUrl } from '../i18n/utils';
+
+const currentLang = getLangFromUrl(Astro.url);
+---
+
+<div class="flex space-x-2 items-center">
+  {Object.entries(languages).map(([lang, label]) => (
+    <a
+      href={getRelativeUrl(lang, Astro.url)}
+      class={`text-sm px-2 py-1 rounded transition-colors duration-200 ${currentLang === lang 
+        ? 'bg-secondary text-white font-medium' 
+        : 'hover:bg-gray-100'}`}
+      aria-label={`Switch to ${label} language`}
+    >
+      {lang.toUpperCase()}
+    </a>
+  ))}
+</div>

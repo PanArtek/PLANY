@@ -1,0 +1,90 @@
+---
+import '../styles/global.css';
+import SEOMetaTags from '../components/SEOMetaTags.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	lang?: string;
+	article?: {
+		publishedTime: string;
+		modifiedTime?: string;
+		section?: string;
+		tags?: string[];
+	};
+	type?: 'website' | 'article';
+}
+
+const { 
+	title = 'PLANY - Professional Fit-out Services',
+	description = 'High-quality fit-out services for commercial and residential spaces with professional approach.',
+	image = '/images/og-image.jpg',
+	lang = 'en',
+	article,
+	type = 'website'
+} = Astro.props;
+
+// Get current page URL to determine if this is the home page
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === `/${lang}/`;
+
+// Preload critical fonts and resources only on the home page
+const criticalResources = isHomePage ? [
+  { rel: 'preload', href: '/fonts/inter-var.woff2', as: 'font', type: 'font/woff2', crossorigin: true },
+  { rel: 'preload', href: '/fonts/montserrat-var.woff2', as: 'font', type: 'font/woff2', crossorigin: true },
+  { rel: 'preload', href: '/images/logo.svg', as: 'image' },
+] : [];
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="theme-color" content="#0F172A" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+		<link rel="manifest" href="/manifest.webmanifest">
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Performance optimization for fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		
+		<!-- Preload critical resources for better performance -->
+		{criticalResources.map(resource => (
+			<link 
+				rel={resource.rel} 
+				href={resource.href} 
+				as={resource.as} 
+				type={resource.type} 
+				crossorigin={resource.crossorigin}
+			/>
+		))}
+		
+		<SEOMetaTags 
+			title={title} 
+			description={description} 
+			image={image}
+			type={type}
+			article={article}
+		/>
+		
+		<!-- Add support for older browsers -->
+		<script>
+			// Add support for :focus-visible in older browsers
+			// @ts-ignore
+			!('onscrollend' in window) && document.documentElement.classList.add('no-scrollend');
+			document.documentElement.classList.remove('no-js');
+		</script>
+		
+		<!-- Service worker registration for offline capabilities -->
+		<script src="/register-sw.js" defer></script>
+		
+		<!-- Fonts loaded asynchronously with high priority for hero section -->
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

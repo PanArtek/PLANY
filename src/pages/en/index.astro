@@ -1,0 +1,599 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout 
+  title="PLANY - Professional Fit-out Services"
+  description="High-quality fit-out services for commercial and residential spaces with professional approach."
+>
+  <section id="hero" class="min-h-screen flex items-center bg-background-alt relative">
+    <div class="container mx-auto py-20">
+      <div class="max-w-3xl">
+        <h1 class="text-5xl md:text-6xl font-heading font-bold mb-6">
+          {t('hero.title' as any)}
+        </h1>
+        <p class="text-xl md:text-2xl text-text-light mb-8">
+          {t('hero.subtitle' as any)}
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="btn-primary">{t('hero.cta' as any)}</a>
+          <a href="#portfolio" class="btn-secondary">{t('hero.secondary' as any)}</a>
+        </div>
+      </div>
+    </div>
+    <div class="absolute inset-0 z-[-1] opacity-20">
+      <!-- This would be a background pattern or image -->
+    </div>
+  </section>
+
+  <section id="about" class="section bg-white">
+    <div class="container">
+      <div class="section-title">
+        <h2>{t('about.title' as any)}</h2>
+        <p class="text-xl text-text-light mt-4">{t('about.subtitle' as any)}</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <p class="text-lg mb-6">
+            {t('about.description' as any)}
+          </p>
+          
+          <div class="grid grid-cols-2 gap-8 mt-8">
+            <div class="text-center">
+              <span class="text-4xl font-bold text-secondary block">10+</span>
+              <span class="text-text-light">{t('about.experience' as any)}</span>
+            </div>
+            <div class="text-center">
+              <span class="text-4xl font-bold text-secondary block">250+</span>
+              <span class="text-text-light">{t('about.projects' as any)}</span>
+            </div>
+            <div class="text-center">
+              <span class="text-4xl font-bold text-secondary block">200+</span>
+              <span class="text-text-light">{t('about.clients' as any)}</span>
+            </div>
+            <div class="text-center">
+              <span class="text-4xl font-bold text-secondary block">15+</span>
+              <span class="text-text-light">{t('about.awards' as any)}</span>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gray-200 h-96 rounded-lg">
+          <!-- This would be an about image -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="section bg-background-alt">
+    <div class="container">
+      <div class="section-title">
+        <h2>{t('portfolio.title' as any)}</h2>
+        <p class="text-xl text-text-light mt-4">{t('portfolio.subtitle' as any)}</p>
+      </div>
+      
+      <div class="flex justify-center mb-8">
+        <div class="flex flex-wrap justify-center gap-2">
+          <button class="px-4 py-2 rounded-full bg-secondary text-white filter-button" data-filter="all">
+            {t('portfolio.all' as any)}
+          </button>
+          <button class="px-4 py-2 rounded-full bg-white text-text hover:bg-gray-100 filter-button" data-filter="commercial">
+            {t('portfolio.commercial' as any)}
+          </button>
+          <button class="px-4 py-2 rounded-full bg-white text-text hover:bg-gray-100 filter-button" data-filter="residential">
+            {t('portfolio.residential' as any)}
+          </button>
+          <button class="px-4 py-2 rounded-full bg-white text-text hover:bg-gray-100 filter-button" data-filter="retail">
+            {t('portfolio.retail' as any)}
+          </button>
+          <button class="px-4 py-2 rounded-full bg-white text-text hover:bg-gray-100 filter-button" data-filter="hospitality">
+            {t('portfolio.hospitality' as any)}
+          </button>
+          <button class="px-4 py-2 rounded-full bg-white text-text hover:bg-gray-100 filter-button" data-filter="office">
+            {t('portfolio.office' as any)}
+          </button>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 portfolio-container">
+        <!-- Portfolio items would go here -->
+        <div class="card overflow-hidden group portfolio-item" data-category="commercial">
+          <div class="relative h-64 bg-gray-200">
+            <!-- Portfolio image -->
+            <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+              <a href="#" class="btn-primary">{t('portfolio.viewProject' as any)}</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Commercial Office Space</h3>
+            <p class="text-text-light">Modern office fit-out for a tech company</p>
+          </div>
+        </div>
+        
+        <div class="card overflow-hidden group portfolio-item" data-category="residential">
+          <div class="relative h-64 bg-gray-200">
+            <!-- Portfolio image -->
+            <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+              <a href="#" class="btn-primary">{t('portfolio.viewProject' as any)}</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Luxury Apartment</h3>
+            <p class="text-text-light">High-end residential fit-out</p>
+          </div>
+        </div>
+        
+        <div class="card overflow-hidden group portfolio-item" data-category="retail">
+          <div class="relative h-64 bg-gray-200">
+            <!-- Portfolio image -->
+            <div class="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+              <a href="#" class="btn-primary">{t('portfolio.viewProject' as any)}</a>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">Fashion Boutique</h3>
+            <p class="text-text-light">Retail store fit-out in shopping center</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section bg-white">
+    <div class="container">
+      <div class="section-title">
+        <h2>{t('services.title' as any)}</h2>
+        <p class="text-xl text-text-light mt-4">{t('services.subtitle' as any)}</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t('services.commercial.title' as any)}</h3>
+          <p class="text-text-light">{t('services.commercial.description' as any)}</p>
+        </div>
+        
+        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t('services.residential.title' as any)}</h3>
+          <p class="text-text-light">{t('services.residential.description' as any)}</p>
+        </div>
+        
+        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t('services.design.title' as any)}</h3>
+          <p class="text-text-light">{t('services.design.description' as any)}</p>
+        </div>
+        
+        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t('services.furniture.title' as any)}</h3>
+          <p class="text-text-light">{t('services.furniture.description' as any)}</p>
+        </div>
+        
+        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t('services.project.title' as any)}</h3>
+          <p class="text-text-light">{t('services.project.description' as any)}</p>
+        </div>
+        
+        <div class="card p-6 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{t('services.consultation.title' as any)}</h3>
+          <p class="text-text-light">{t('services.consultation.description' as any)}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="section bg-background-alt">
+    <div class="container">
+      <div class="section-title">
+        <h2>{t('process.title' as any)}</h2>
+        <p class="text-xl text-text-light mt-4">{t('process.subtitle' as any)}</p>
+      </div>
+      
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-secondary"></div>
+        
+        <div class="space-y-12">
+          <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+            <div class="order-2 md:order-1 md:w-5/12 md:text-right">
+              <h3 class="text-xl font-semibold mb-2">{t('process.step1.title' as any)}</h3>
+              <p class="text-text-light">{t('process.step1.description' as any)}</p>
+            </div>
+            <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+              1
+            </div>
+            <div class="order-3 md:w-5/12 hidden md:block"></div>
+          </div>
+          
+          <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+            <div class="order-2 md:order-1 md:w-5/12 hidden md:block"></div>
+            <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+              2
+            </div>
+            <div class="order-3 md:w-5/12">
+              <h3 class="text-xl font-semibold mb-2">{t('process.step2.title' as any)}</h3>
+              <p class="text-text-light">{t('process.step2.description' as any)}</p>
+            </div>
+          </div>
+          
+          <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+            <div class="order-2 md:order-1 md:w-5/12 md:text-right">
+              <h3 class="text-xl font-semibold mb-2">{t('process.step3.title' as any)}</h3>
+              <p class="text-text-light">{t('process.step3.description' as any)}</p>
+            </div>
+            <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+              3
+            </div>
+            <div class="order-3 md:w-5/12 hidden md:block"></div>
+          </div>
+          
+          <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+            <div class="order-2 md:order-1 md:w-5/12 hidden md:block"></div>
+            <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+              4
+            </div>
+            <div class="order-3 md:w-5/12">
+              <h3 class="text-xl font-semibold mb-2">{t('process.step4.title' as any)}</h3>
+              <p class="text-text-light">{t('process.step4.description' as any)}</p>
+            </div>
+          </div>
+          
+          <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+            <div class="order-2 md:order-1 md:w-5/12 md:text-right">
+              <h3 class="text-xl font-semibold mb-2">{t('process.step5.title' as any)}</h3>
+              <p class="text-text-light">{t('process.step5.description' as any)}</p>
+            </div>
+            <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+              5
+            </div>
+            <div class="order-3 md:w-5/12 hidden md:block"></div>
+          </div>
+          
+          <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+            <div class="order-2 md:order-1 md:w-5/12 hidden md:block"></div>
+            <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+              6
+            </div>
+            <div class="order-3 md:w-5/12">
+              <h3 class="text-xl font-semibold mb-2">{t('process.step6.title' as any)}</h3>
+              <p class="text-text-light">{t('process.step6.description' as any)}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section bg-white">
+    <div class="container">
+      <div class="section-title">
+        <h2>{t('testimonials.title' as any)}</h2>
+        <p class="text-xl text-text-light mt-4">{t('testimonials.subtitle' as any)}</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="card p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+            <div>
+              <h4 class="font-semibold">John Smith</h4>
+              <p class="text-sm text-text-light">CEO, Tech Solutions</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <p class="text-text-light">
+            "PLANY delivered an exceptional office fit-out for our company. They understood our needs, worked within our budget, and completed the project on time. The result exceeded our expectations."
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+            <div>
+              <h4 class="font-semibold">Anna Kowalska</h4>
+              <p class="text-sm text-text-light">Homeowner</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <p class="text-text-light">
+            "We hired PLANY for our apartment renovation, and they transformed our space beautifully. Their attention to detail and quality craftsmanship are truly impressive. Highly recommended!"
+          </p>
+        </div>
+        
+        <div class="card p-6">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-full bg-gray-200 mr-4"></div>
+            <div>
+              <h4 class="font-semibold">Michael Schmidt</h4>
+              <p class="text-sm text-text-light">Restaurant Owner</p>
+            </div>
+          </div>
+          <div class="mb-4">
+            <div class="flex text-accent">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <p class="text-text-light">
+            "PLANY handled the fit-out of our restaurant with professionalism and creativity. They designed a space that perfectly captures the atmosphere we wanted, and our customers love it."
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section bg-background-alt">
+    <div class="container">
+      <div class="section-title">
+        <h2>{t('contact.title' as any)}</h2>
+        <p class="text-xl text-text-light mt-4">{t('contact.subtitle' as any)}</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="card p-8">
+          <form id="contact-form" class="space-y-6">
+            <div>
+              <label for="name" class="block text-text font-medium mb-2">{t('contact.name' as any)}</label>
+              <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+            </div>
+            
+            <div>
+              <label for="email" class="block text-text font-medium mb-2">{t('contact.email' as any)}</label>
+              <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+            </div>
+            
+            <div>
+              <label for="phone" class="block text-text font-medium mb-2">{t('contact.phone' as any)}</label>
+              <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent">
+            </div>
+            
+            <div>
+              <label for="message" class="block text-text font-medium mb-2">{t('contact.message' as any)}</label>
+              <textarea id="message" name="message" rows="5" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent"></textarea>
+            </div>
+            
+            <button type="submit" class="btn-primary w-full">{t('contact.submit' as any)}</button>
+            
+            <div id="form-success" class="hidden p-4 bg-green-100 text-green-700 rounded-md">
+              {t('contact.success' as any)}
+            </div>
+            
+            <div id="form-error" class="hidden p-4 bg-red-100 text-red-700 rounded-md">
+              {t('contact.error' as any)}
+            </div>
+          </form>
+        </div>
+        
+        <div>
+          <div class="card p-8 mb-8">
+            <h3 class="text-xl font-semibold mb-6">{t('contact.address' as any)}</h3>
+            <address class="not-italic space-y-4">
+              <div class="flex items-start space-x-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-secondary mt-1">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                <div>
+                  <p>123 Business Street</p>
+                  <p>Warsaw, 00-000</p>
+                  <p>Poland</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-secondary">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                </svg>
+                <div>
+                  <p class="font-medium">{t('contact.phone.label' as any)}</p>
+                  <p>+48 123 456 789</p>
+                </div>
+              </div>
+              
+              <div class="flex items-center space-x-4">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-secondary">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                <div>
+                  <p class="font-medium">{t('contact.email.label' as any)}</p>
+                  <p>info@plany.com</p>
+                </div>
+              </div>
+            </address>
+          </div>
+          
+          <div class="card p-8">
+            <h3 class="text-xl font-semibold mb-6">Working Hours</h3>
+            <ul class="space-y-2">
+              <li class="flex justify-between">
+                <span>Monday - Friday:</span>
+                <span>9:00 - 18:00</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Saturday:</span>
+                <span>10:00 - 15:00</span>
+              </li>
+              <li class="flex justify-between">
+                <span>Sunday:</span>
+                <span>Closed</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Portfolio filtering
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+        
+        // Toggle active state
+        filterButtons.forEach(btn => {
+          btn.classList.remove('bg-secondary', 'text-white');
+          btn.classList.add('bg-white', 'text-text', 'hover:bg-gray-100');
+        });
+        button.classList.remove('bg-white', 'text-text', 'hover:bg-gray-100');
+        button.classList.add('bg-secondary', 'text-white');
+        
+        // Filter items
+        portfolioItems.forEach(item => {
+          if (filter === 'all' || item.getAttribute('data-category') === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Contact form handling
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+    const formError = document.getElementById('form-error');
+    
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // This would normally be an AJAX request to your backend
+        setTimeout(() => {
+          formSuccess.classList.remove('hidden');
+          contactForm.reset();
+          
+          setTimeout(() => {
+            formSuccess.classList.add('hidden');
+          }, 5000);
+        }, 1000);
+      });
+    }
+  });
+  
+  // Intersection Observer for animations
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animate-fade-in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  });
+</script>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

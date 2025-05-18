@@ -1,0 +1,142 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getProjectPageBySlug } from '../../../cms/api';
+import { defaultLanguage } from '../../../i18n/ui';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+
+export async function getStaticPaths() {
+  // In a real implementation, you would fetch all projects from the CMS
+  // For now, we'll hardcode the two projects we've created
+  const slugs = ['modern-office-space', 'luxury-apartment'];
+  
+  return slugs.map(slug => ({
+    params: { slug },
+    props: { slug }
+  }));
+}
+
+const { slug } = Astro.params;
+const project = await getProjectPageBySlug(slug);
+
+// Handle 404 case
+if (!project) {
+  return Astro.redirect(`/${defaultLanguage}/404`);
+}
+
+// Get SEO data for the current language
+const seo = project.seo[defaultLanguage];
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+>
+  <div class="container mx-auto py-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Project header -->
+      <header class="text-center mb-12">
+        <h1 class="text-4xl font-bold mb-4">{project.title}</h1>
+        {project.subtitle && <p class="text-xl text-text-light">{project.subtitle}</p>}
+      </header>
+      
+      <!-- Featured image -->
+      <div class="mb-12">
+        <!-- This would be an actual image in production -->
+        <div class="bg-gray-200 h-96 w-full flex items-center justify-center">
+          <span class="text-gray-400">{project.featuredImage.alt || 'Featured Image'}</span>
+        </div>
+      </div>
+      
+      <!-- Project details -->
+      <div class="grid md:grid-cols-3 gap-8 mb-12">
+        <div>
+          <h3 class="font-semibold mb-2">Client</h3>
+          <p>{project.client}</p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">Location</h3>
+          <p>{project.location}</p>
+        </div>
+        <div>
+          <h3 class="font-semibold mb-2">Date</h3>
+          <p>{project.date}</p>
+        </div>
+      </div>
+      
+      <!-- Project description -->
+      <div class="mb-12">
+        <p class="text-lg text-text-light">{project.description}</p>
+      </div>
+      
+      <!-- Project gallery -->
+      <div class="my-12 grid grid-cols-1 md:grid-cols-2 gap-4">
+        {project.gallery.map((image) => (
+          <div class="bg-gray-200 h-60 flex items-center justify-center">
+            <span class="text-gray-400">{image.alt || 'Gallery Image'}</span>
+          </div>
+        ))}
+      </div>
+      
+      <!-- Project details -->
+      <div class="grid md:grid-cols-1 gap-8 mb-12">
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Challenge</h2>
+          <p>{project.challenge}</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Solution</h2>
+          <p>{project.solution}</p>
+        </div>
+        <div>
+          <h2 class="text-2xl font-bold mb-4">Results</h2>
+          <p>{project.results}</p>
+        </div>
+      </div>
+      
+      <!-- Services provided -->
+      <div class="mb-12">
+        <h2 class="text-2xl font-bold mb-4">Services Provided</h2>
+        <ul class="flex flex-wrap gap-2">
+          {project.services.map((service) => (
+            <li class="bg-background-alt px-4 py-2 rounded-full text-sm">
+              {service}
+            </li>
+          ))}
+        </ul>
+      </div>
+      
+      <!-- Navigation -->
+      <div class="grid md:grid-cols-2 gap-4 mt-16">
+        {project.prevProject && (
+          <a href={`/${lang}/portfolio/${project.prevProject.slug}`} class="card p-4 flex items-center">
+            <div class="flex-shrink-0 mr-4">
+              <div class="bg-gray-200 w-16 h-16 flex items-center justify-center">
+                <span class="text-gray-400">Img</span>
+              </div>
+            </div>
+            <div>
+              <p class="text-sm text-text-light">Previous Project</p>
+              <p class="font-semibold">{project.prevProject.title}</p>
+            </div>
+          </a>
+        )}
+        
+        {project.nextProject && (
+          <a href={`/${lang}/portfolio/${project.nextProject.slug}`} class="card p-4 flex items-center justify-end">
+            <div class="text-right mr-4">
+              <p class="text-sm text-text-light">Next Project</p>
+              <p class="font-semibold">{project.nextProject.title}</p>
+            </div>
+            <div class="flex-shrink-0">
+              <div class="bg-gray-200 w-16 h-16 flex items-center justify-center">
+                <span class="text-gray-400">Img</span>
+              </div>
+            </div>
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</BaseLayout>

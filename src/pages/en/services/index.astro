@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { getLangFromUrl, useTranslations } from '../../../i18n/utils';
+import { mockHomePage } from '../../../cms/mock/home';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Get services from mock data
+const services = mockHomePage.services[lang].services;
+---
+
+<BaseLayout
+  title="Our Services | PLANY"
+  description="Explore our professional fit-out services including commercial fit-out, residential fit-out, interior design, and more."
+>
+  <div class="container mx-auto py-12">
+    <header class="text-center mb-16">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">{mockHomePage.services[lang].title}</h1>
+      <p class="text-xl text-text-light max-w-3xl mx-auto">{mockHomePage.services[lang].subtitle}</p>
+    </header>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <a 
+          href={`/${lang}/services/${service.slug}`} 
+          class="card p-6 hover:shadow-lg transition-shadow duration-300"
+        >
+          <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mb-6">
+            <!-- This would be an actual icon in production -->
+            <span class="text-secondary">{service.icon}</span>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">{service.title}</h3>
+          <p class="text-text-light mb-4">{service.description}</p>
+          <span class="text-secondary font-medium">Learn more &rarr;</span>
+        </a>
+      ))}
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="mt-20 bg-primary text-white p-12 rounded-lg text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Space?</h2>
+      <p class="text-xl mb-8 max-w-2xl mx-auto">Contact us today to discuss your project and receive a free consultation and quote.</p>
+      <a 
+        href={`/${lang}/contact`} 
+        class="inline-block px-8 py-4 bg-secondary text-white rounded-md hover:bg-secondary-dark transition-colors duration-200 font-medium"
+      >
+        Get in Touch
+      </a>
+    </div>
+    
+    <!-- Process Overview -->
+    <div class="mt-20">
+      <h2 class="text-3xl font-bold mb-12 text-center">{mockHomePage.process[lang].title}</h2>
+      
+      <div class="relative">
+        <!-- Timeline line -->
+        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-secondary"></div>
+        
+        <div class="space-y-12">
+          {mockHomePage.process[lang].steps.map((step, index) => (
+            <div class="relative flex flex-col md:flex-row items-center md:justify-between md:space-x-8">
+              <div class={`order-2 md:order-${index % 2 === 0 ? '1' : '3'} md:w-5/12 ${index % 2 === 0 ? 'md:text-right' : ''}`}>
+                <h3 class="text-xl font-semibold mb-2">{step.title}</h3>
+                <p class="text-text-light">{step.description}</p>
+              </div>
+              <div class="order-1 md:order-2 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-secondary text-white font-bold mb-4 md:mb-0">
+                {step.stepNumber}
+              </div>
+              <div class={`order-3 md:w-5/12 ${index % 2 === 0 ? 'hidden md:block' : ''}`}></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

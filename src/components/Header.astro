@@ -1,0 +1,113 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navItems = [
+  { key: 'nav.home', href: `/${lang}/` },
+  { key: 'nav.about', href: `/${lang}/#about` },
+  { key: 'nav.portfolio', href: `/${lang}/#portfolio` },
+  { key: 'nav.services', href: `/${lang}/#services` },
+  { key: 'nav.process', href: `/${lang}/#process` },
+  { key: 'nav.testimonials', href: `/${lang}/#testimonials` },
+  { key: 'nav.contact', href: `/${lang}/#contact` },
+];
+
+// Determine if this is the home page for preloading critical resources
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === `/${lang}/`;
+---
+
+<header class="fixed w-full bg-white/90 backdrop-blur-sm z-50 shadow-sm">
+  <div class="container mx-auto flex justify-between items-center py-4">
+    <a href={`/${lang}/`} class="font-heading text-2xl font-bold text-primary">
+      {isHomePage ? (
+        <img 
+          src="/images/logo.svg" 
+          alt="PLANY" 
+          width="120" 
+          height="36" 
+          fetchpriority="high"
+          loading="eager"
+        />
+      ) : (
+        <img 
+          src="/images/logo.svg" 
+          alt="PLANY" 
+          width="120" 
+          height="36" 
+          loading="lazy"
+        />
+      )}
+    </a>
+    
+    <div class="hidden md:flex space-x-8 items-center">
+      {navItems.map((item) => (
+        <a 
+          href={item.href}
+          class="font-medium text-text hover:text-secondary transition-colors duration-200"
+        >
+          {t(item.key as any)}
+        </a>
+      ))}
+    </div>
+    
+    <div class="flex items-center space-x-4">
+      <LanguageSwitcher />
+      
+      <button 
+        id="mobile-menu-button" 
+        class="md:hidden flex items-center text-text p-2"
+        aria-label="Toggle menu"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden bg-white">
+    <div class="container mx-auto py-4 space-y-4">
+      {navItems.map((item) => (
+        <a 
+          href={item.href}
+          class="block font-medium text-text hover:text-secondary transition-colors duration-200 py-2"
+        >
+          {t(item.key as any)}
+        </a>
+      ))}
+    </div>
+  </div>
+</header>
+
+<script defer>
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Toggle aria-expanded for accessibility
+        const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+        mobileMenuButton.setAttribute('aria-expanded', (!isExpanded).toString());
+      });
+      
+      // Close menu when clicking on a link
+      const mobileLinks = mobileMenu.querySelectorAll('a');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          mobileMenuButton.setAttribute('aria-expanded', 'false');
+        });
+      });
+      
+      // Initialize aria-expanded
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>
