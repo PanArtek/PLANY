@@ -1,48 +1,124 @@
-# Astro Starter Kit: Basics
+# PLANY - Professional Fit-out Company Website
 
-```sh
-npm create astro@latest -- --template basics
+<div align="center">
+  <img src="public/images/logo.svg" alt="PLANY Logo" width="200">
+  <p><em>Building exceptional interior spaces</em></p>
+</div>
+
+## 🌟 Overview
+
+PLANY is a multilingual website built for a professional fit-out company, showcasing their portfolio, services, and expertise across multiple markets. The site is optimized for performance, accessibility, and international reach.
+
+## ✨ Features
+
+- **🌐 Multilingual Support** - Full content in Polish, English, Ukrainian, and German
+- **🖼️ Dynamic Portfolio** - Showcase projects with filtering capabilities
+- **📱 Fully Responsive** - Mobile-first design approach
+- **⚡ Performance Optimized** - Fast loading with Core Web Vitals in mind
+- **♿ Accessible** - WCAG 2.1 AA compliant
+- **🔍 SEO Ready** - Structured metadata and proper hreflang implementation
+
+## 🛠️ Tech Stack
+
+- **[Astro 5.7](https://astro.build/)** - Core framework with Islands Architecture
+- **[React 19](https://reactjs.org/)** - For interactive components
+- **[Tailwind CSS 4.1](https://tailwindcss.com/)** - For styling
+- **TypeScript** - For type safety and developer experience
+- **Headless CMS** - Structure prepared for integration
+
+## 🚀 Quick Start
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## 📁 Project Structure
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
+```
+PLANY/
+├── public/              # Static assets
 ├── src/
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/      # UI components
+│   │   ├── atoms/       # Basic UI elements
+│   │   ├── molecules/   # Composite components
+│   │   └── organisms/   # Complex components
+│   ├── layouts/         # Page layouts
+│   ├── pages/           # Page components
+│   │   ├── en/          # English pages
+│   │   ├── pl/          # Polish pages
+│   │   ├── ua/          # Ukrainian pages
+│   │   └── de/          # German pages
+│   ├── styles/          # Global styles
+│   ├── utils/           # Utility functions
+│   ├── i18n/            # Internationalization
+│   └── cms/             # CMS integration
+│       ├── types/       # Content type definitions
+│       ├── api/         # API utilities
+│       └── mock/        # Mock data for development
+├── astro.config.mjs     # Astro configuration
+└── tailwind.config.js   # Tailwind configuration
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## 🌍 Internationalization
 
-## 🧞 Commands
+The website supports four languages:
+- 🇵🇱 Polish (PL) - Primary language
+- 🇬🇧 English (EN) - International audience
+- 🇺🇦 Ukrainian (UA) - Supporting Ukrainian clients
+- 🇩🇪 German (DE) - Supporting German market
 
-All commands are run from the root of the project, from a terminal:
+Language switching is URL-based (e.g., `/en/`, `/pl/`) with proper SEO handling through hreflang tags.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🎯 Key Features
 
-## 👀 Want to learn more?
+### Portfolio Showcase
+Browse through categorized projects with filtering capabilities and detailed case studies.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Service Details
+Comprehensive presentation of services offered with related projects and detailed information.
+
+### Performance Optimizations
+- Image optimization pipeline
+- Lazy loading for off-screen content
+- Code splitting and tree shaking
+- Critical CSS inline injection
+- Service worker for offline capabilities
+
+### Accessibility
+WCAG 2.1 AA compliant with:
+- Semantic HTML structure
+- Proper color contrast
+- Keyboard navigation support
+- Screen reader optimization
+- ARIA implementation
+
+## 📊 Core Web Vitals Targets
+
+- Largest Contentful Paint (LCP) < 2.5s
+- First Input Delay (FID) < 100ms
+- Cumulative Layout Shift (CLS) < 0.1
+
+## 🧩 Browser and Device Support
+
+- Modern browsers (latest 2 versions)
+- Mobile-first responsive design
+- Progressive enhancement approach
+- Touch-friendly interactions
+
+## 📜 License
+
+All rights reserved. This project and its source code are proprietary and confidential.
+
+---
+
+For detailed documentation, refer to [documentation.md](documentation.md) and [wcag-implementation.md](wcag-implementation.md).
