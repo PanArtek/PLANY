@@ -1,0 +1,81 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import { languages } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  article?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    section?: string;
+    tags?: string[];
+  };
+}
+
+const { 
+  title, 
+  description, 
+  image = '/images/og-image.jpg',
+  type = 'website',
+  article,
+} = Astro.props;
+
+const currentLang = getLangFromUrl(Astro.url);
+// Ensure we have a valid base URL, fallback to protocol + hostname if site is undefined
+const baseUrl = Astro.site || new URL(`${Astro.url.protocol}//${Astro.url.host}`);
+const canonicalURL = new URL(Astro.url.pathname, baseUrl);
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+
+<!-- Canonical URL -->
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, baseUrl)} />
+<meta property="og:locale" content={currentLang === 'en' ? 'en_US' : 
+                                    currentLang === 'pl' ? 'pl_PL' : 
+                                    currentLang === 'ua' ? 'uk_UA' : 
+                                    currentLang === 'de' ? 'de_DE' : 'en_US'} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={canonicalURL} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, baseUrl)} />
+
+<!-- Article specific tags -->
+{article && type === 'article' && (
+  <>
+    <meta property="article:published_time" content={article.publishedTime} />
+    {article.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime} />}
+    {article.section && <meta property="article:section" content={article.section} />}
+    {article.tags?.map(tag => (
+      <meta property="article:tag" content={tag} />
+    ))}
+  </>
+)}
+
+<!-- hreflang tags for language alternates -->
+{Object.keys(languages).map(lang => (
+  <link 
+    rel="alternate" 
+    hreflang={lang === 'en' ? 'en' : 
+              lang === 'pl' ? 'pl' : 
+              lang === 'ua' ? 'uk' : 
+              lang === 'de' ? 'de' : 'en'} 
+    href={new URL(Astro.url.pathname.replace(`/${currentLang}`, `/${lang}`), baseUrl)} 
+  />
+))}
+<link rel="alternate" hreflang="x-default" href={new URL(Astro.url.pathname.replace(`/${currentLang}`, '/en'), baseUrl)} />
